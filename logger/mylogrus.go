@@ -8,8 +8,8 @@ import (
 	"runtime"
 	"strings"
 
-	"mohammadinasab-dev/logmodule/configuration"
-	"mohammadinasab-dev/logmodule/formatter"
+	"github.com/mohammadinasab-dev/logmodule/configuration"
+	"github.com/mohammadinasab-dev/logmodule/formatter"
 
 	"github.com/sirupsen/logrus"
 )

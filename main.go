@@ -1,7 +1,7 @@
 package main
 
 import (
-	log "mohammadinasab-dev/logmodule/logger"
+	log "github.com/mohammadinasab-dev/logmodule/logger"
 )
 
 type lop struct {

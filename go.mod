@@ -1,4 +1,4 @@
-module mohammadinasab-dev/logmodule
+module github.com/mohammadinasab-dev/logmodule
 
 go 1.15
 
