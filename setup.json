@@ -1,5 +1,5 @@
 {
-  "environment":"debug",
+  "environment":"product",
   "elasticsearch":"elastic",
   "logstash":"logstash"
 }

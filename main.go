@@ -1,7 +1,7 @@
 package main
 
 import (
-	clog "mohammadinasab-dev/logmodule/logger"
+	log "mohammadinasab-dev/logmodule/logger"
 )
 
 type lop struct {
@@ -10,7 +10,7 @@ type lop struct {
 
 func main() {
 	foods := map[string]interface{}{
-		"bacon": "delicious",
+		"baghali": "delicious",
 		"eggs": struct {
 			Source string
 			Price  float64
@@ -21,32 +21,36 @@ func main() {
 		"steak": true,
 	}
 
-	// fruite := struct {
-	// 	Name string
-	// 	Type string
-	// }{
-	// 	Name: "Sammy",
-	// 	Type: "Shark",
-	// }
+	//clog.Log.INFO("message from INFO", foods)
+	log.Info("first info message", foods)
+	log.Debug("debug", foods)
+	log.Debug("second log message", foods)
 
-	// fruitesMap := map[string]interface{}{
-	// 	"type": "summer",
-	// 	"fruite": struct {
-	// 		Name string
-	// 		Type string
-	// 	}{
-	// 		Name: "holo",
-	// 		Type: "waterful",
-	// 	},
-	// }
-	// //
-	// cl := clog.Log.WithFields(logrus.Fields{
-	// 	"fields": fruite,
-	// })
-	// cl.Info("logrus.fields with struct as value")
-
-	// pl := clog.Log.WithFields(fruitesMap)
-	// pl.Info("withe a map as input")
-
-	clog.Log.INFO("message from INFO", foods)
 }
+
+// fruite := struct {
+// 	Name string
+// 	Type string
+// }{
+// 	Name: "Sammy",
+// 	Type: "Shark",
+// }
+
+// fruitesMap := map[string]interface{}{
+// 	"type": "summer",
+// 	"fruite": struct {
+// 		Name string
+// 		Type string
+// 	}{
+// 		Name: "holo",
+// 		Type: "waterful",
+// 	},
+// }
+// //
+// cl := clog.Log.WithFields(logrus.Fields{
+// 	"fields": fruite,
+// })
+// cl.Info("logrus.fields with struct as value")
+
+// pl := clog.Log.WithFields(fruitesMap)
+// pl.Info("withe a map as input")
