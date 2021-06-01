@@ -136,7 +136,7 @@ func init() {
 }
 
 func (s *StandardLog) INFO(msg string, m map[string]interface{}) {
-	ll := s.WithFields(m)
+
 	//fmt.Println(runtime.Caller(1))
 	pc, file, line, ok := runtime.Caller(1)
 	fmt.Println(pc)
@@ -150,5 +150,12 @@ func (s *StandardLog) INFO(msg string, m map[string]interface{}) {
 	fmt.Println(funcCaller)
 	fmt.Println(line)
 	fmt.Println(ok)
+	// caller := map[string]interface{}{
+	// 	"service": serviceCaller,
+	// 	"func":    funcCaller,
+	// }
+	m["service"] = serviceCaller
+	m["func"] = funcCaller
+	ll := s.WithFields(m)
 	ll.Info(msg)
 }

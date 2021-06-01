@@ -20,6 +20,6 @@ func main() {
 	// clog.Log.Println("hello log world")
 	// clog.Log.WithField("loplp", "holo")
 	ll := clog.Log.WithFields(foods)
-	ll.Info()
+	ll.Info("message from Info")
 	clog.Log.INFO("message from INFO", foods)
 }

@@ -37,7 +37,7 @@ func SetProFormat() logrus.Formatter {
 		// },
 		DataKey:          "product",
 		DisableTimestamp: false,
-		TimestampFormat:  "02-01-2006 15:04:05", // the "time" field configuratiom
+		TimestampFormat:  "Mon, 02 Jan 2006 15:04:05.999999999", // the "time" field configuratiom
 		CallerPrettyfier: func(f *runtime.Frame) (string, string) {
 			return fmt.Sprintf(" %s:%d", formatFuncName(f.Function), f.Line), fmt.Sprintf("%s", formatFilePath(f.File))
 		},
