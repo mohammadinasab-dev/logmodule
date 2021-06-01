@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	clog "mohammadinasab-dev/logmodule/logger"
 )
 
 type lop struct {
@@ -9,34 +9,6 @@ type lop struct {
 }
 
 func main() {
-	// clog.Log.Println("hello log world")
-	// ll := clog.Log.WithFields(logrus.Fields{
-	// 	"extra_field_one": "extra_value_one",
-	// })
-
-	// ll.Info("lop lop")
-	// clog.Log.Info(lop{
-	// 	name: "lop lop",
-	// })
-
-	// clog.Log.Info(lop{
-	// 	name: "polpol",
-	// }, "lop lop")
-
-	type fieldkey string
-
-	// var (
-	// 	Action   fieldkey
-	// 	response fieldkey
-	// )
-
-	type fieldmap map[fieldkey]interface{}
-
-	// mapoffield := fieldmap{
-	// 	Action:   "name",
-	// 	response: "true",
-	// }
-
 	foods := map[string]interface{}{
 		"bacon": "delicious",
 		"eggs": struct {
@@ -45,21 +17,8 @@ func main() {
 		}{"chicken", 1.75},
 		"steak": true,
 	}
-
-	//map[struct]
-
-	//printcustom(mapoffield)
-	printcustom(foods)
-	printcustom(map[string]interface{}{
-		"holo": "loplop",
-	})
-
-}
-
-var foods map[string]interface{}
-
-func printcustom(foods map[string]interface{}) {
-	for k, v := range foods {
-		fmt.Println(k, v)
-	}
+	clog.Log.Println("hello log world")
+	clog.Log.WithField("loplp", "holo")
+	ll := clog.Log.WithFields(foods)
+	ll.Info()
 }

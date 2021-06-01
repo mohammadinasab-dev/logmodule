@@ -24,6 +24,10 @@ type logger interface {
 	GetOutPut()
 }
 
+type logging interface {
+	INFO(m map[string]interface{})
+}
+
 type DebugLogger struct {
 }
 
@@ -80,6 +84,16 @@ func (product *ProductLogger) NewLogger(productFormat logrus.Formatter) *Standar
 	productLogger.Formatter = productFormat
 	return &StandardLog{productLogger}
 }
+
+// // error retun type or not?
+// func (product *ProductLogger) INFO(m map[string]interface{}) {
+// 	var field logrus.Fields
+// 	for k, v := range m {
+// 		field{
+// 			k: v,
+// 		}
+// 	}
+// }
 
 func (debug *DebugLogger) GetOutPut() (io.Writer, error) {
 	return os.Stdout, nil
