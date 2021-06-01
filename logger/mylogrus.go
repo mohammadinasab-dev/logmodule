@@ -5,6 +5,8 @@ import (
 	"io"
 	"log"
 	"os"
+	"runtime"
+	"strings"
 
 	"mohammadinasab-dev/logmodule/configuration"
 	"mohammadinasab-dev/logmodule/formatter"
@@ -85,16 +87,6 @@ func (product *ProductLogger) NewLogger(productFormat logrus.Formatter) *Standar
 	return &StandardLog{productLogger}
 }
 
-// // error retun type or not?
-// func (product *ProductLogger) INFO(m map[string]interface{}) {
-// 	var field logrus.Fields
-// 	for k, v := range m {
-// 		field{
-// 			k: v,
-// 		}
-// 	}
-// }
-
 func (debug *DebugLogger) GetOutPut() (io.Writer, error) {
 	return os.Stdout, nil
 }
@@ -106,7 +98,6 @@ func (develop *DevelopLogger) GetOutPut() (io.Writer, error) {
 	}
 	return logFile, nil
 }
-
 func (product *ProductLogger) GetOutPut() (io.Writer, error) {
 	logFile, err := os.OpenFile("log", os.O_WRONLY|os.O_CREATE, 0755)
 	if err != nil {
@@ -122,7 +113,6 @@ func init() {
 		fmt.Println("error is here", err) //panic or fatal? and absoloutly formatt it!?
 	}
 	environment := configuration.GetEnvironment(conf)
-	fmt.Println(environment)
 	switch environment {
 	case "debug":
 		debugFormat := formatter.SetDebugFormat()
@@ -135,9 +125,7 @@ func init() {
 		Log = developLogger.NewLogger(developFormat)
 
 	case "product":
-		fmt.Println("here is production case")
 		productFormat := formatter.SetProFormat()
-		fmt.Println("here is production case after setproformat")
 		productLogger := NewProductLogger()
 		Log = productLogger.NewLogger(productFormat)
 	default:
@@ -145,4 +133,22 @@ func init() {
 
 	}
 
+}
+
+func (s *StandardLog) INFO(msg string, m map[string]interface{}) {
+	ll := s.WithFields(m)
+	//fmt.Println(runtime.Caller(1))
+	pc, file, line, ok := runtime.Caller(1)
+	fmt.Println(pc)
+	//fmt.Println(file)
+	arr := strings.Split(file, "/")
+	// fmt.Println(arr[len(arr)-2])
+	// fmt.Println(arr[len(arr)-1])
+	serviceCaller := fmt.Sprintf("%s", arr[len(arr)-2])
+	funcCaller := fmt.Sprintf("%s:%d", arr[len(arr)-1], line)
+	fmt.Println(serviceCaller)
+	fmt.Println(funcCaller)
+	fmt.Println(line)
+	fmt.Println(ok)
+	ll.Info(msg)
 }

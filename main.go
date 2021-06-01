@@ -17,8 +17,9 @@ func main() {
 		}{"chicken", 1.75},
 		"steak": true,
 	}
-	clog.Log.Println("hello log world")
-	clog.Log.WithField("loplp", "holo")
+	// clog.Log.Println("hello log world")
+	// clog.Log.WithField("loplp", "holo")
 	ll := clog.Log.WithFields(foods)
 	ll.Info()
+	clog.Log.INFO("message from INFO", foods)
 }

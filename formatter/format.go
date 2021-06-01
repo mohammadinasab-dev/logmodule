@@ -39,16 +39,16 @@ func SetProFormat() logrus.Formatter {
 		DisableTimestamp: false,
 		TimestampFormat:  "02-01-2006 15:04:05", // the "time" field configuratiom
 		CallerPrettyfier: func(f *runtime.Frame) (string, string) {
-			return fmt.Sprintf(" %s", formatFuncName(f.Function)), fmt.Sprintf("%s:%d", formatFilePath(f.File), f.Line)
+			return fmt.Sprintf(" %s:%d", formatFuncName(f.Function), f.Line), fmt.Sprintf("%s", formatFilePath(f.File))
 		},
 	}
 }
 
 func formatFuncName(funcname string) string {
 	s := strings.Split(funcname, ".")
-	return s[len(s)-1]
+	return s[len(s)-2]
 }
 func formatFilePath(path string) string {
 	arr := strings.Split(path, "/")
-	return arr[len(arr)-1]
+	return arr[len(arr)-2]
 }

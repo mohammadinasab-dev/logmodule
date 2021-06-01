@@ -16,7 +16,6 @@ type config struct {
 
 //error return type or not?
 func GetEnvironment(conf *config) string {
-	fmt.Println("here is getenvironment")
 	return conf.Environment
 }
 
@@ -34,6 +33,5 @@ func LoadSetup(path string) (*config, error) {
 		fmt.Printf("unable to decode into config struct, %v", err)
 		return &config{}, errors.New("run.environment variable not set or Not defined")
 	}
-	fmt.Println("here is loadsetup")
 	return conf, nil
 }
