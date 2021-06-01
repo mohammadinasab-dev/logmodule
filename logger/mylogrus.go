@@ -99,7 +99,7 @@ func (develop *DevelopLogger) GetOutPut() (io.Writer, error) {
 	return logFile, nil
 }
 func (product *ProductLogger) GetOutPut() (io.Writer, error) {
-	logFile, err := os.OpenFile("log", os.O_WRONLY|os.O_CREATE, 0755)
+	logFile, err := os.OpenFile("log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		fmt.Println(err) //handle?
 		return nil, err
@@ -128,6 +128,7 @@ func init() {
 		productFormat := formatter.SetProFormat()
 		productLogger := NewProductLogger()
 		Log = productLogger.NewLogger(productFormat)
+		Log.SetReportCaller(false)
 	default:
 		fmt.Println("no matches found in cases!")
 
@@ -135,27 +136,26 @@ func init() {
 
 }
 
+//handle not ok from caller ?
 func (s *StandardLog) INFO(msg string, m map[string]interface{}) {
 
-	//fmt.Println(runtime.Caller(1))
-	pc, file, line, ok := runtime.Caller(1)
-	fmt.Println(pc)
-	//fmt.Println(file)
+	pc, file, line, _ := runtime.Caller(1)
 	arr := strings.Split(file, "/")
-	// fmt.Println(arr[len(arr)-2])
-	// fmt.Println(arr[len(arr)-1])
 	serviceCaller := fmt.Sprintf("%s", arr[len(arr)-2])
 	funcCaller := fmt.Sprintf("%s:%d", arr[len(arr)-1], line)
-	fmt.Println(serviceCaller)
-	fmt.Println(funcCaller)
-	fmt.Println(line)
-	fmt.Println(ok)
-	// caller := map[string]interface{}{
-	// 	"service": serviceCaller,
-	// 	"func":    funcCaller,
-	// }
-	m["service"] = serviceCaller
-	m["func"] = funcCaller
+	type Caller struct {
+		Prco     string
+		Service  string
+		Function string
+	}
+
+	caller := Caller{
+		Prco:     fmt.Sprint(pc),
+		Service:  serviceCaller,
+		Function: funcCaller,
+	}
+
+	m["caller"] = caller
 	ll := s.WithFields(m)
 	ll.Info(msg)
 }

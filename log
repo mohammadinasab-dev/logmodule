@@ -1,2 +1,56 @@
-{"file":"logmodule","func":" main:23","level":"info","msg":"message from Info","product":{"bacon":"delicious","eggs":{},"steak":true},"time":"Tue, 01 Jun 2021 09:40:55.8013161"}
-{"file":"logger","func":" (*StandardLog):160","level":"info","msg":"message from INFO","product":{"bacon":"delicious","eggs":{},"func":"main.go:24","service":"logmodule","steak":true},"time":"Tue, 01 Jun 2021 09:40:55.8033088"}
+{"file":"logmodule","func":" main:48","level":"info","msg":"logrus.fields with struct as value","product":{"fields":{"Name":"Sammy","Type":"Shark"}},"time":"Tue, 01 Jun 2021 13:23:08.2563069"}
+{"file":"logmodule","func":" main:51","level":"info","msg":"withe a map as input","product":{"fruite":{"Name":"holo","Type":"waterful"},"type":"summer"},"time":"Tue, 01 Jun 2021 13:23:08.2573045"}
+{"file":"logger","func":" (*StandardLog):178","level":"info","msg":"message from INFO","product":{"bacon":"delicious","caller":{"Prco":"7049370","Service":"logmodule","Function":"main.go:53"},"eggs":{"Source":"chicken","Price":1.75},"steak":true},"time":"Tue, 01 Jun 2021 13:23:08.2602972"}
+{"file":"C:/github.com/mohammadinasab-dev/logmodule/main.go:48","func":"main.main","level":"info","msg":"logrus.fields with struct as value","product":{"fields":{"Name":"Sammy","Type":"Shark"}},"time":"Tue, 01 Jun 2021 13:25:12.5571902"}
+{"file":"C:/github.com/mohammadinasab-dev/logmodule/main.go:51","func":"main.main","level":"info","msg":"withe a map as input","product":{"fruite":{"Name":"holo","Type":"waterful"},"type":"summer"},"time":"Tue, 01 Jun 2021 13:25:12.5591852"}
+{"file":"C:/github.com/mohammadinasab-dev/logmodule/logger/mylogrus.go:178","func":"mohammadinasab-dev/logmodule/logger.(*StandardLog).INFO","level":"info","msg":"message from INFO","product":{"bacon":"delicious","caller":{"Prco":"6524346","Service":"logmodule","Function":"main.go:53"},"eggs":{"Source":"chicken","Price":1.75},"steak":true},"time":"Tue, 01 Jun 2021 13:25:12.5601816"}
+{
+  "file": "logmodule",
+  "func": " main:48",
+  "level": "info",
+  "msg": "logrus.fields with struct as value",
+  "product": {
+    "fields": {
+      "Name": "Sammy",
+      "Type": "Shark"
+    }
+  },
+  "time": "Tue, 01 Jun 2021 13:27:56.3939781"
+}
+{
+  "file": "logmodule",
+  "func": " main:51",
+  "level": "info",
+  "msg": "withe a map as input",
+  "product": {
+    "fruite": {
+      "Name": "holo",
+      "Type": "waterful"
+    },
+    "type": "summer"
+  },
+  "time": "Tue, 01 Jun 2021 13:27:56.3949936"
+}
+{
+  "file": "logger",
+  "func": " (*StandardLog):178",
+  "level": "info",
+  "msg": "message from INFO",
+  "product": {
+    "bacon": "delicious",
+    "caller": {
+      "Prco": "11374746",
+      "Service": "logmodule",
+      "Function": "main.go:53"
+    },
+    "eggs": {
+      "Source": "chicken",
+      "Price": 1.75
+    },
+    "steak": true
+  },
+  "time": "Tue, 01 Jun 2021 13:27:56.3969613"
+}
+{"level":"info","msg":"logrus.fields with struct as value","product":{"fields":{"Name":"Sammy","Type":"Shark"}},"time":"Tue, 01 Jun 2021 13:32:02.3792692"}
+{"level":"info","msg":"withe a map as input","product":{"fruite":{"Name":"holo","Type":"waterful"},"type":"summer"},"time":"Tue, 01 Jun 2021 13:32:02.3802667"}
+{"level":"info","msg":"message from INFO","product":{"bacon":"delicious","caller":{"Prco":"12488890","Service":"logmodule","Function":"main.go:53"},"eggs":{"Source":"chicken","Price":1.75},"steak":true},"time":"Tue, 01 Jun 2021 13:32:02.3812671"}
