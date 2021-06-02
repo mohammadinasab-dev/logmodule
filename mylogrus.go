@@ -91,7 +91,7 @@ func (debug *debugLogger) GetOutPut() (io.Writer, error) {
 	return os.Stdout, nil
 }
 func (develop *developLogger) GetOutPut() (io.Writer, error) {
-	logFile, err := os.OpenFile("log", os.O_WRONLY|os.O_CREATE, 0755)
+	logFile, err := os.OpenFile("log.json", os.O_WRONLY|os.O_CREATE, 0755)
 	if err != nil {
 		fmt.Println(err) //handle?
 		return nil, err
