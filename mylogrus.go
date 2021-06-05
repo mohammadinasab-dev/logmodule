@@ -99,7 +99,7 @@ func (develop *developLogger) GetOutPut() (io.Writer, error) {
 	return logFile, nil
 }
 func (product *productLogger) GetOutPut() (io.Writer, error) {
-	logFile, err := os.OpenFile("log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	logFile, err := os.OpenFile(".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		fmt.Println(err) //handle?
 		return nil, err
@@ -139,48 +139,36 @@ func init() {
 //handle not ok from Caller ?
 func Info(msg string, m map[string]interface{}) {
 
-	pc, file, line, _ := runtime.Caller(1)
-	arr := strings.Split(file, "/")
-	serviceCaller := fmt.Sprintf("%s", arr[len(arr)-2])
-	funcCaller := fmt.Sprintf("%s:%d", arr[len(arr)-1], line)
-	type Caller struct {
-		Prco     string
-		Service  string
-		Function string
-	}
-
-	caller := Caller{
-		Prco:     fmt.Sprint(pc),
-		Service:  serviceCaller,
-		Function: funcCaller,
-	}
-
-	m["caller"] = caller
+	m["caller"] = getCallersStack()
 	ll := stdLog.WithFields(m)
 	ll.Info(msg)
 }
 
 func Debug(msg string, m map[string]interface{}) {
 
+	m["caller"] = getCallersStack()
+	ll := stdLog.WithFields(m)
+	ll.Logger.SetLevel(logrus.DebugLevel)
+	ll.Debug(msg)
+}
+
+func getCallersStack() Caller {
+
 	pc, file, line, _ := runtime.Caller(1)
 	arr := strings.Split(file, "/")
 	serviceCaller := fmt.Sprintf("%s", arr[len(arr)-2])
 	funcCaller := fmt.Sprintf("%s:%d", arr[len(arr)-1], line)
-	type Caller struct {
-		Prco     string
-		Service  string
-		Function string
-	}
 
 	caller := Caller{
 		Prco:     fmt.Sprint(pc),
 		Service:  serviceCaller,
 		Function: funcCaller,
 	}
+	return caller
+}
 
-	m["caller"] = caller
-	ll := stdLog.WithFields(m)
-	fmt.Println("i am alive")
-	ll.Logger.SetLevel(logrus.DebugLevel)
-	ll.Debug(msg)
+type Caller struct {
+	Prco     string
+	Service  string
+	Function string
 }
