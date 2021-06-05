@@ -125,6 +125,7 @@ func init() {
 		stdLog = developLogger.NewLogger(developFormat)
 
 	case "product":
+		fmt.Println(runtime.Caller(1))
 		productFormat := formatter.SetProFormat()
 		productLogger := newProductLogger()
 		stdLog = productLogger.NewLogger(productFormat)
