@@ -99,7 +99,7 @@ func (develop *developLogger) GetOutPut() (io.Writer, error) {
 	return logFile, nil
 }
 func (product *productLogger) GetOutPut() (io.Writer, error) {
-	logFile, err := os.OpenFile(".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	logFile, err := os.OpenFile("productlog.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		fmt.Println(err) //handle?
 		return nil, err
