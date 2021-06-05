@@ -33,11 +33,11 @@ func SetDevFormat() logrus.Formatter {
 	}
 }
 
-func SetProFormat(file string) logrus.Formatter {
+func SetProFormat() logrus.Formatter {
 	return &logrus.JSONFormatter{
 		DisableTimestamp: false,
 		TimestampFormat:  "Mon, 02 Jan 2006 15:04:05.999999999", // the "time" field configuratiom
-		DataKey:          file,
+		DataKey:          "product",
 		//PrettyPrint:      true,
 		CallerPrettyfier: func(f *runtime.Frame) (string, string) {
 			return fmt.Sprintf(" %s:%d", formatFuncName(f.Function), f.Line), fmt.Sprintf("%s", formatFilePath(f.File))
